@@ -5,7 +5,7 @@ import { DEFAULT_UNIVERSITY } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import { auth } from "@/lib/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import "./home.css"; // ✅ tambah css
+import "./home.css";
 
 export default function Home() {
   const router = useRouter();
@@ -34,25 +34,55 @@ export default function Home() {
 
   /* ================= SEARCH ================= */
   const search = async () => {
-    setSearchLoading(true);
+    try {
+      setSearchLoading(true);
 
-    const res = await fetch("/api/search", {
-      method: "POST",
-      body: JSON.stringify({ name, nim, university }),
-    });
+      const res = await fetch("/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, nim, university }),
+      });
 
-    const data = await res.json();
-    setResult(data);
-    setSearchLoading(false);
+      if (!res.ok) {
+        alert("Gagal mengambil data dari server");
+        return;
+      }
+
+      const data = await res.json();
+      console.log("RESULT:", data);
+
+      setResult(data);
+    } catch (err) {
+      console.error(err);
+      alert("Terjadi error saat mencari data");
+    } finally {
+      setSearchLoading(false);
+    }
   };
 
+  /* ================= SAVE ================= */
   const save = async () => {
-    await fetch("/api/save", {
-      method: "POST",
-      body: JSON.stringify(result),
-    });
+    try {
+      const res = await fetch("/api/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result),
+      });
 
-    alert("Data berhasil disimpan!");
+      if (!res.ok) {
+        alert("Gagal menyimpan data");
+        return;
+      }
+
+      alert("Data berhasil disimpan!");
+    } catch (err) {
+      console.error(err);
+      alert("Terjadi error saat menyimpan");
+    }
   };
 
   if (authLoading)
@@ -61,7 +91,6 @@ export default function Home() {
   return (
     <div className="home-container">
       <div className="home-card">
-
         <h1 className="title">Cari Data Alumni</h1>
 
         <div className="input-group">
@@ -126,7 +155,6 @@ export default function Home() {
             Logout
           </button>
         </div>
-
       </div>
     </div>
   );
