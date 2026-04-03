@@ -1,0 +1,117 @@
+/* ===== BACKGROUND ===== */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== CARD ===== */
+.home-card {
+  width: 420px;
+  background: #0b1220;
+  padding: 35px;
+  border-radius: 14px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-bottom: 25px;
+}
+
+/* ===== INPUT ===== */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  color: #cbd5f5;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #1e293b;
+  background: #020617;
+  color: white;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59,130,246,0.5);
+}
+
+/* ===== BUTTONS ===== */
+.primary-btn,
+.success-btn,
+.secondary-btn,
+.danger-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.primary-btn:hover {
+  box-shadow: 0 6px 15px rgba(37,99,235,0.4);
+}
+
+.success-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.success-btn:hover {
+  box-shadow: 0 6px 15px rgba(22,163,74,0.4);
+}
+
+.secondary-btn {
+  background: #475569;
+  color: white;
+}
+
+.danger-btn {
+  background: #dc2626;
+  color: white;
+}
+
+/* ===== RESULT BOX ===== */
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: white;
+}
+
+.menu-buttons {
+  margin-top: 20px;
+}
+
+/* ===== LOADING ===== */
+.loading {
+  padding: 40px;
+  color: white;
+}
