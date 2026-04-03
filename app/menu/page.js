@@ -39,9 +39,6 @@ export default function Home() {
 
       const res = await fetch("/api/search", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ name, nim, university }),
       });
 
@@ -67,9 +64,6 @@ export default function Home() {
     try {
       const res = await fetch("/api/save", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(result),
       });
 
