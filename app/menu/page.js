@@ -32,28 +32,54 @@ export default function Home() {
     return () => unsubscribe();
   }, [router]);
 
-  /* ================= SEARCH ================= */
+  /* ================= SEARCH (FIXED) ================= */
   const search = async () => {
+    setSearchLoading(true);
+
     try {
-      setSearchLoading(true);
+      const query = nim || name;
 
-      const res = await fetch("/api/search", {
-        method: "POST",
-        body: JSON.stringify({ name, nim, university }),
-      });
-
-      if (!res.ok) {
-        alert("Gagal mengambil data dari server");
+      if (!query) {
+        alert("Isi Nama atau NIM dulu!");
         return;
       }
 
-      const data = await res.json();
-      console.log("RESULT:", data);
+      const res = await fetch(
+        `https://api.ryzumi.net/api/search/mahasiswa?query=${encodeURIComponent(query)}`
+      );
 
-      setResult(data);
+      if (!res.ok) {
+        throw new Error("API Error");
+      }
+
+      const data = await res.json();
+      console.log("DATA API:", data);
+
+      const mahasiswa = data?.[0];
+
+      setResult({
+        name: mahasiswa?.nama || name || "-",
+        nim: mahasiswa?.nim || "-",
+        campus: mahasiswa?.nama_pt || "Tidak ditemukan",
+        study_program: mahasiswa?.nama_prodi || "Tidak ditemukan",
+        linkedin: "-",
+        instagram: "-",
+      });
+
     } catch (err) {
-      console.error(err);
-      alert("Terjadi error saat mencari data");
+      console.error("ERROR:", err);
+
+      // fallback kalau API gagal
+      setResult({
+        name: name || "Tidak diketahui",
+        nim: nim || "-",
+        campus: university,
+        study_program: "Data tidak tersedia",
+        linkedin: "-",
+        instagram: "-",
+      });
+
+      alert("API gagal, menampilkan data manual");
     } finally {
       setSearchLoading(false);
     }
@@ -122,8 +148,8 @@ export default function Home() {
             <p><b>NIM:</b> {result.nim}</p>
             <p><b>Kampus:</b> {result.campus}</p>
             <p><b>Prodi:</b> {result.study_program}</p>
-            <p><b>LinkedIn:</b> {result.linkedin || "-"}</p>
-            <p><b>Instagram:</b> {result.instagram || "-"}</p>
+            <p><b>LinkedIn:</b> {result.linkedin}</p>
+            <p><b>Instagram:</b> {result.instagram}</p>
 
             <button className="success-btn" onClick={save}>
               Simpan Informasi
