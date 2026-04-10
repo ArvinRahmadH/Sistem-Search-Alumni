@@ -32,7 +32,24 @@ export default function Home() {
     return () => unsubscribe();
   }, [router]);
 
-  /* ================= SEARCH (FIXED) ================= */
+  /* ================= SEARCH SOCIAL MEDIA ================= */
+    const searchSocialMedia = async (name) => {
+    try {
+      const res = await fetch("/api/social", {
+        method: "POST",
+        body: JSON.stringify({ name }),
+      });
+
+      const data = await res.json();
+
+      return data;
+    } catch (err) {
+      console.error("Frontend ERROR:", err);
+      return { linkedin: "-", instagram: "-" };
+    }
+  };
+
+  /* ================= SEARCH ================= */
   const search = async () => {
     setSearchLoading(true);
 
@@ -41,11 +58,14 @@ export default function Home() {
 
       if (!query) {
         alert("Isi Nama atau NIM dulu!");
+        setSearchLoading(false);
         return;
       }
 
       const res = await fetch(
-        `https://api.ryzumi.net/api/search/mahasiswa?query=${encodeURIComponent(query)}`
+        `https://api.ryzumi.net/api/search/mahasiswa?query=${encodeURIComponent(
+          query
+        )}`
       );
 
       if (!res.ok) {
@@ -57,19 +77,24 @@ export default function Home() {
 
       const mahasiswa = data?.[0];
 
+      // 🔥 ambil nama final
+      const namaFinal = mahasiswa?.nama || name;
+
+      // 🔥 cari social media
+      const social = await searchSocialMedia(namaFinal);
+
       setResult({
         name: mahasiswa?.nama || name || "-",
         nim: mahasiswa?.nim || "-",
         campus: mahasiswa?.nama_pt || "Tidak ditemukan",
         study_program: mahasiswa?.nama_prodi || "Tidak ditemukan",
-        linkedin: "-",
-        instagram: "-",
+        linkedin: social.linkedin,
+        instagram: social.instagram,
       });
 
     } catch (err) {
       console.error("ERROR:", err);
 
-      // fallback kalau API gagal
       setResult({
         name: name || "Tidak diketahui",
         nim: nim || "-",
@@ -148,8 +173,24 @@ export default function Home() {
             <p><b>NIM:</b> {result.nim}</p>
             <p><b>Kampus:</b> {result.campus}</p>
             <p><b>Prodi:</b> {result.study_program}</p>
-            <p><b>LinkedIn:</b> {result.linkedin}</p>
-            <p><b>Instagram:</b> {result.instagram}</p>
+
+            <p>
+              <b>LinkedIn:</b>{" "}
+              {result.linkedin !== "-" ? (
+                <a href={result.linkedin} target="_blank" rel="noopener noreferrer">
+                  {result.linkedin}
+                </a>
+              ) : "-"}
+            </p>
+
+            <p>
+              <b>Instagram:</b>{" "}
+              {result.instagram !== "-" ? (
+                <a href={result.instagram} target="_blank" rel="noopener noreferrer">
+                  {result.instagram}
+                </a>
+              ) : "-"}
+            </p>
 
             <button className="success-btn" onClick={save}>
               Simpan Informasi
