@@ -1,29 +1,33 @@
 /* ===== BACKGROUND ===== */
 .home-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #020617, #0f172a);
+  background: radial-gradient(circle at top, #064e3b, #022c22);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ===== CARD ===== */
+/* ===== CARD (GLASS STYLE) ===== */
 .home-card {
   width: 420px;
-  background: #0b1220;
   padding: 35px;
-  border-radius: 14px;
+  border-radius: 18px;
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.6),
-    inset 0 0 0 1px rgba(255,255,255,0.05);
+  background: rgba(6, 78, 59, 0.6);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
 }
 
+/* ===== TITLE ===== */
 .title {
   text-align: center;
-  color: white;
+  color: #d1fae5;
   margin-bottom: 25px;
+  font-size: 24px;
 }
 
 /* ===== INPUT ===== */
@@ -32,7 +36,7 @@
 }
 
 .input-group label {
-  color: #cbd5f5;
+  color: #a7f3d0;
   font-size: 14px;
   display: block;
   margin-bottom: 6px;
@@ -40,72 +44,98 @@
 
 .input-group input {
   width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #1e293b;
-  background: #020617;
-  color: white;
+  padding: 11px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(2, 44, 34, 0.8);
+  color: #ecfdf5;
+
   outline: none;
+  transition: 0.25s;
 }
 
 .input-group input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 6px rgba(59,130,246,0.5);
+  border-color: #34d399;
+  box-shadow: 0 0 8px rgba(52,211,153,0.6);
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTON BASE ===== */
 .primary-btn,
 .success-btn,
 .secondary-btn,
 .danger-btn {
   width: 100%;
-  padding: 11px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 12px;
   font-weight: bold;
-  transition: 0.25s;
+  transition: 0.3s;
 }
 
+/* ===== PRIMARY (SEARCH) ===== */
 .primary-btn {
-  background: #2563eb;
+  background: linear-gradient(135deg, #059669, #047857);
   color: white;
 }
 
 .primary-btn:hover {
-  box-shadow: 0 6px 15px rgba(37,99,235,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(5,150,105,0.5);
 }
 
+/* ===== SUCCESS (SAVE) ===== */
 .success-btn {
-  background: #16a34a;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
 }
 
 .success-btn:hover {
-  box-shadow: 0 6px 15px rgba(22,163,74,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16,185,129,0.5);
 }
 
+/* ===== SECONDARY ===== */
 .secondary-btn {
-  background: #475569;
+  background: rgba(255,255,255,0.08);
+  color: #d1fae5;
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ===== DANGER ===== */
+.danger-btn {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
   color: white;
 }
 
-.danger-btn {
-  background: #dc2626;
-  color: white;
+.danger-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220,38,38,0.5);
 }
 
 /* ===== RESULT BOX ===== */
 .result-box {
   margin-top: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  background: #020617;
-  border: 1px solid #1e293b;
-  color: white;
+  padding: 18px;
+  border-radius: 12px;
+
+  background: rgba(2, 44, 34, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  color: #ecfdf5;
 }
 
+.result-box h3 {
+  margin-bottom: 10px;
+  color: #6ee7b7;
+}
+
+/* ===== MENU BUTTONS ===== */
 .menu-buttons {
   margin-top: 20px;
 }
@@ -113,5 +143,6 @@
 /* ===== LOADING ===== */
 .loading {
   padding: 40px;
-  color: white;
+  color: #d1fae5;
+  text-align: center;
 }

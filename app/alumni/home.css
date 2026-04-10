@@ -1,31 +1,17 @@
-/* home.css - Tema Biru Gelap */
-
 /* ================= GLOBAL ================= */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0f172a; /* biru gelap background */
+  background: radial-gradient(circle at top, #064e3b, #022c22);
   margin: 0;
   padding: 0;
-  color: #e2e8f0; /* teks terang */
+  color: #ecfdf5;
 }
 
 h1 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #f1f5f9;
-}
-
-button {
-  cursor: pointer;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: all 0.2s;
-}
-
-button:hover {
-  opacity: 0.9;
+  color: #d1fae5;
+  text-align: center;
 }
 
 /* ================= CONTAINER ================= */
@@ -35,57 +21,76 @@ button:hover {
   margin: auto;
 }
 
-/* ================= BUTTON ================= */
+/* ================= BUTTON BASE ================= */
+button {
+  cursor: pointer;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+/* ===== BACK BUTTON ===== */
 .back-button {
-  background-color: #1e293b; /* biru gelap sedikit terang */
-  color: #f8fafc;
+  background: rgba(255,255,255,0.08);
+  color: #d1fae5;
 }
 
 .back-button:hover {
-  background-color: #273449;
+  background: rgba(255,255,255,0.15);
 }
 
+/* ===== EDIT ===== */
 .edit-button {
-  background-color: #3b82f6; /* biru cerah */
-  color: #fff;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
 }
 
 .edit-button:hover {
-  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(16,185,129,0.5);
 }
 
+/* ===== DELETE ===== */
 .delete-button {
-  background-color: #ef4444; /* merah tetap */
-  color: #fff;
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: white;
 }
 
 .delete-button:hover {
-  background-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(220,38,38,0.5);
 }
 
+/* ===== SAVE ===== */
 .save-button {
-  background-color: #10b981; /* hijau tetap */
-  color: #fff;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
 }
 
 .save-button:hover {
-  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(5,150,105,0.5);
 }
 
 /* ================= CARD ================= */
 .alumni-card {
-  background-color: #1e293b; /* card biru gelap */
-  border: 1px solid #334155;
+  background: rgba(6, 78, 59, 0.6);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.1);
   padding: 24px;
   margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  transition: all 0.2s;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  transition: 0.3s;
 }
 
 .alumni-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
 }
 
 .alumni-card p {
@@ -93,9 +98,9 @@ button:hover {
 }
 
 .alumni-card hr {
-  margin: 12px 0;
+  margin: 14px 0;
   border: 0;
-  border-top: 1px solid #334155;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 /* ================= INPUT ================= */
@@ -109,22 +114,30 @@ button:hover {
 .input-group label {
   width: 180px;
   font-weight: bold;
-  color: #cbd5e1; /* label terang */
+  color: #a7f3d0;
 }
 
 .input-group input {
   flex: 1;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #475569;
-  background-color: #0f172a;
-  color: #f8fafc;
+  padding: 10px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(2, 44, 34, 0.8);
+  color: #ecfdf5;
+
   outline: none;
-  transition: border-color 0.2s;
+  transition: 0.25s;
 }
 
 .input-group input:focus {
-  border-color: #3b82f6; /* biru fokus */
+  border-color: #34d399;
+  box-shadow: 0 0 8px rgba(52,211,153,0.6);
+}
+
+/* ================= TEXT STATES ================= */
+p {
+  color: #d1fae5;
 }
 
 /* ================= RESPONSIVE ================= */
